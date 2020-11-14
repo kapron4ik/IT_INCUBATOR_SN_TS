@@ -22,6 +22,7 @@ const Dialogs: React.FC<DialogsPageType> = (props) => {
                 placeholder='Enter your message'/></div>
                 <div><button>Send</button></div>
             </div>
+            <div>sdfgsdfgsdfg</div>
         </div>
     )
 }
