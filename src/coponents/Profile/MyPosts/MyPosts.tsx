@@ -1,23 +1,25 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import Post from './Post/Post';
-import {ProfilePageType} from "../../../redux/Store";
+import {PostsType, ProfilePageType} from "../../../redux/Store";
 
+type PropsType = {
+    posts: Array<PostsType>
+    newPostText: string
+    addPost: (postText: string) => void
+    updateNewPostText: (text: string) => void
+}
 
-
-const MyPosts: React.FC<ProfilePageType> = (props) => {
+const MyPosts: React.FC<PropsType> = (props) => {
 
     let postsElement = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount} id={p.id}/>);
 
-    // let newPostElement = React.createRef();
-
     let onAddPost = () => {
-        // props.addPost();
+            props.addPost(props.newPostText)
     };
 
-    let onPostChange = () => {
-        // let text = newPostElement.current.value;
-        // props.updateNewPostText(text);
+    let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.updateNewPostText(e.currentTarget.value);
     }
     return (
         <div className={s.postBlock}>
