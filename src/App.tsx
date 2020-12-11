@@ -27,12 +27,14 @@ const App: React.FC<PropsType> = (props) => {
                         dialogs={state.dialogsPage.dialogs}
                         messages={state.dialogsPage.messages}
                         newMessageBody={state.dialogsPage.newMessageBody}
+                        dispath={props.store.dispath.bind(props.store)}
                     />}/>
                     < Route path="/profile" render={() => <Profile
                         posts={state.profilePage.posts}
                         newPostText={state.profilePage.newPostText}
-                        addPost={props.store.addPost.bind(props.store)}
-                        updateNewPostText = {props.store.updateNewPostText.bind(props.store)}
+                        dispath={props.store.dispath.bind(props.store)}
+                        // addPost={props.store.addPost.bind(props.store)}
+                        // updateNewPostText = {props.store.updateNewPostText.bind(props.store)}
                     />}/>
                     < Route path="/news" render={() => <News/>}/>
                     < Route path="/music" render={() => <Music/>}/>

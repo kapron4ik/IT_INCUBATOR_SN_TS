@@ -2,8 +2,8 @@
 //     newMessageBody: string
 // }
 
-
-import {renderTree} from "../render";
+import { profileReducer } from "./profile-reducer"
+import {dialogsReducer} from "./dialogs-reducer";
 
 export type MessagesType = {
     id: number
@@ -44,12 +44,61 @@ export type RootStateType = {
 
 export type StoreType = {
     _state: RootStateType
-    addPost: (postText: string) => void,
-    updateNewPostText: (text: string) => void
+    // addPost: (postText: string) => void,
+    // updateNewPostText: (text: string) => void
     _onChange: () => void
     subscribe: (callback: () => void) => void
     getState: () => RootStateType
+    dispath: (action: DispathActionType) => void
 }
+
+// type ChangeNewTextActionType = {
+//     type: "CHANGE-NEW_TEXT"
+//     newText: string
+// }
+
+// type ChangeNewTextActionType = ReturnType <typeof changeNewTextAC>
+
+export type DispathActionType = ReturnType<typeof addPostAC> |
+    ReturnType<typeof changeNewTextAC> |
+    ReturnType<typeof addMessageAC> |
+    ReturnType<typeof changeNewMessageTextAC>
+
+export const addPostAC = (postText: string) => {
+    return {
+        type: "ADD-POST",
+        postText: postText
+    } as const
+}
+
+// export const changeNewTextAC = (newText: string):ChangeNewTextActionType => {
+//     return {
+//         type: "CHANGE-NEW_TEXT",
+//         newText: newText
+//     } as const
+// }
+
+export const changeNewTextAC = (newText: string) => {
+    return {
+        type: "CHANGE-NEW_TEXT",
+        newText: newText
+    } as const
+}
+
+export const addMessageAC = (messageText: string) => {
+    return {
+        type: "ADD-MESSAGE",
+        messageText: messageText
+    } as const
+}
+
+export const changeNewMessageTextAC = (newMessageText: string) => {
+    return {
+        type: "CHANGE-NEW_MESSAGE_TEXT",
+        newMessageText: newMessageText
+    } as const
+}
+
 
 const store: StoreType = {
     _state: {
@@ -79,30 +128,20 @@ const store: StoreType = {
             newMessageBody: ""
         }
     },
-    addPost(postText) {
-        const newPost: PostsType = {
-            id: 4,
-            message: postText,
-            likesCount: 0
-        }
-        this._state.profilePage.posts.push(newPost)
-        this._onChange()
-        this._state.profilePage.newPostText = ""
-    },
-    updateNewPostText(text) {
-        this._state.profilePage.newPostText = text
-        this._onChange()
-    },
+
     _onChange() {
         console.log("Store is change")
     },
-
     subscribe(callback: () => void) {
         this._onChange = callback
     },
-
     getState() {
         return this._state
+    },
+    dispath(action) {
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._onChange()
     }
 }
 
