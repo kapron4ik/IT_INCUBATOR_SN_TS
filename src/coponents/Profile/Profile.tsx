@@ -6,7 +6,7 @@ import { DispathActionType, PostsType} from "../../redux/Store";
 type PropsType = {
     posts: Array<PostsType>
     newPostText: string
-    dispath: (action:DispathActionType) => void
+    dispatch: (action:DispathActionType) => void
     // addPost: (postText: string) => void
     // updateNewPostText: (text: string) => void
 }
@@ -18,7 +18,7 @@ const Profile: React.FC<PropsType> = (props) => {
         < MyPosts
             posts={props.posts}
             newPostText={props.newPostText}
-            dispath={props.dispath}
+            dispatch={props.dispatch}
             // addPost={props.addPost}
             // updateNewPostText={props.updateNewPostText}
         />

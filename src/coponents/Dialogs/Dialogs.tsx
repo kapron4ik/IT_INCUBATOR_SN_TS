@@ -14,7 +14,7 @@ type PropsType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
     newMessageBody: string
-    dispath: (action:DispathActionType) => void
+    dispatch: (action:DispathActionType) => void
 }
 
 const Dialogs: React.FC<PropsType> = (props) => {
@@ -25,11 +25,11 @@ const Dialogs: React.FC<PropsType> = (props) => {
     let newMessageBody = props.newMessageBody;
 
     const onMassegaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispath(changeNewMessageTextAC(e.currentTarget.value))
+        props.dispatch(changeNewMessageTextAC(e.currentTarget.value))
     }
 
     const onAddMessage = () => {
-        props.dispath(addMessageAC(props.newMessageBody))
+        props.dispatch(addMessageAC(props.newMessageBody))
     }
 
     return (

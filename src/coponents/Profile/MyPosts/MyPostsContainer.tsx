@@ -2,6 +2,7 @@ import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import Post from './Post/Post';
 import {addPostAC, changeNewTextAC, DispathActionType, PostsType} from "../../../redux/Store";
+import MyPosts from "./MyPosts";
 
 type PropsType = {
     posts: Array<PostsType>
@@ -11,7 +12,7 @@ type PropsType = {
     dispatch: (action: DispathActionType) => void
 }
 
-const MyPosts: React.FC<PropsType> = (props) => {
+const MyPostsContainer: React.FC<PropsType> = (props) => {
 
     let postsElement = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount} id={p.id}/>);
 
@@ -25,20 +26,9 @@ const MyPosts: React.FC<PropsType> = (props) => {
         // props.updateNewPostText(e.currentTarget.value);
     }
     return (
-        <div className={s.postBlock}>
-            <h3>My posts</h3>
-            <div>
-                <div>
-                    <textarea onChange={onPostChange} value={props.newPostText}/>
-                </div>
-                <button onClick={onAddPost}>Add post</button>
-            </div>
-            <div className={s.posts}>
-                {postsElement}
-            </div>
-        </div>
+        <MyPosts />
     )
 }
 
 
-export default MyPosts;
+export default MyPostsContainer;

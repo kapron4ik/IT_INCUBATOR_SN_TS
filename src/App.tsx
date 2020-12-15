@@ -8,15 +8,22 @@ import {BrowserRouter, Route} from "react-router-dom";
 import News from "./coponents/News/News";
 import Music from "./coponents/Music/Music";
 import Settings from "./coponents/Settings/Settings";
-import state, {StoreType} from "./redux/Store";
+import {AppStateType} from "./redux/redux-store";
+import {DispathActionType, RootStateType} from "./redux/Store";
 
 
 type PropsType = {
-    store: StoreType
+    store: any
+    // store: AppStateType
+    // _onChange: () => void
+    // subscribe: (callback: () => void) => void
+    // getState: () => RootStateType
+    // dispath: (action: DispathActionType) => void
 }
 
 const App: React.FC<PropsType> = (props) => {
     const state = props.store.getState()
+    debugger
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
@@ -27,12 +34,12 @@ const App: React.FC<PropsType> = (props) => {
                         dialogs={state.dialogsPage.dialogs}
                         messages={state.dialogsPage.messages}
                         newMessageBody={state.dialogsPage.newMessageBody}
-                        dispath={props.store.dispath.bind(props.store)}
+                        dispatch={props.store.dispatch.bind(props.store)}
                     />}/>
                     < Route path="/profile" render={() => <Profile
                         posts={state.profilePage.posts}
                         newPostText={state.profilePage.newPostText}
-                        dispath={props.store.dispath.bind(props.store)}
+                        dispatch={props.store.dispatch.bind(props.store)}
                         // addPost={props.store.addPost.bind(props.store)}
                         // updateNewPostText = {props.store.updateNewPostText.bind(props.store)}
                     />}/>

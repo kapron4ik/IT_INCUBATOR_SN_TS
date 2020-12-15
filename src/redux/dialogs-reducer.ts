@@ -1,4 +1,4 @@
-import {DialogsPageType, DispathActionType, MessagesType} from "./Store";
+import {DialogsPageType, DialogsType, DispathActionType, MessagesType} from "./Store";
 
 // type ActionType = ReturnType<typeof addMessageAC> |
 //     ReturnType<typeof changeNewMessageTextAC>
@@ -17,7 +17,31 @@ import {DialogsPageType, DispathActionType, MessagesType} from "./Store";
 //     } as const
 // }
 
-export const dialogsReducer = (state: DialogsPageType, action: DispathActionType) => {
+type InitialStateType = {
+    dialogs: Array<DialogsType>
+    messages: Array<MessagesType>
+    newMessageBody: string
+}
+
+let initialState = {
+    dialogs: [
+        {id: 1, name: 'Vasia'},
+        {id: 2, name: 'Pavlik'},
+        {id: 3, name: 'Dunkan'},
+        {id: 4, name: 'Kim'},
+        {id: 5, name: 'Dima'},
+    ],
+    messages: [
+        {id: 1, message: 'Привет'},
+        {id: 2, message: 'Как вы сегодня доехали на работу?'},
+        {id: 3, message: 'Да как и вчера, ты все прекрастно понимаешь.'},
+        {id: 4, message: '100₴'},
+        {id: 5, message: 'Йо'},
+    ],
+    newMessageBody: ""
+}
+
+export const dialogsReducer = (state: InitialStateType = initialState, action: DispathActionType):InitialStateType => {
     switch (action.type) {
         case "ADD-MESSAGE":
             const newMessage: MessagesType = {

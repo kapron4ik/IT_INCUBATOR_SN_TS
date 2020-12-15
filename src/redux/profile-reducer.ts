@@ -17,14 +17,28 @@ import {DispathActionType, PostsType, ProfilePageType} from "./Store";
 //     } as const
 // }
 
-export const profileReducer = (state: ProfilePageType, action: DispathActionType) => {
+type InitialStateType = {
+    posts: Array<PostsType>
+    newPostText: string
+}
+
+let initialState = {
+    posts: [
+        {id: 1, message: 'Привет! Как дела?', likesCount: 12},
+        {id: 2, message: 'Привет! Это мой первый пост', likesCount: 1},
+        {id: 3, message: 'Да как и вчера, ты все прекрастно понимаешь.', likesCount: 18},
+    ],
+    newPostText: 'bla-bla-car-dub'
+}
+
+export const profileReducer = (state: InitialStateType = initialState, action: DispathActionType):InitialStateType => {
     switch (action.type) {
         case "ADD-POST":
-        const newPost: PostsType = {
-            id: 4,
-            message: action.postText,
-            likesCount: 0
-        }
+            const newPost: PostsType = {
+                id: 4,
+                message: action.postText,
+                likesCount: 0
+            }
             state.posts.push(newPost)
             state.newPostText = ""
             return state
