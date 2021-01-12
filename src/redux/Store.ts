@@ -3,7 +3,7 @@
 // }
 
 import { profileReducer } from "./profile-reducer"
-import {dialogsReducer} from "./dialogs-reducer";
+import { dialogsReducer } from "./dialogs-reducer";
 
 export type MessagesType = {
     id: number
@@ -40,7 +40,6 @@ export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
 }
-
 
 export type StoreType = {
     _state: RootStateType

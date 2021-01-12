@@ -1,6 +1,6 @@
 import React from 'react';
 import s from '../Dialogs.module.css'
-import {MessagesType} from "../../../redux/Store";
+import {MessagesType} from "../Dialogs";
 
 const Message:React.FC<MessagesType> = (props) => {
     return (

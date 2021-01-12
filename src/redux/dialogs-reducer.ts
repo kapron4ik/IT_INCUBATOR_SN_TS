@@ -1,4 +1,4 @@
-import {DialogsPageType, DialogsType, DispathActionType, MessagesType} from "./Store";
+import { DispathActionType } from "../types/entities";
 
 // type ActionType = ReturnType<typeof addMessageAC> |
 //     ReturnType<typeof changeNewMessageTextAC>
@@ -16,6 +16,16 @@ import {DialogsPageType, DialogsType, DispathActionType, MessagesType} from "./S
 //         newMessageText: newMessageText
 //     } as const
 // }
+
+type MessagesType = {
+    id: number
+    message: string
+}
+
+type DialogsType = {
+    id: number
+    name: string
+}
 
 type InitialStateType = {
     dialogs: Array<DialogsType>
@@ -41,20 +51,40 @@ let initialState = {
     newMessageBody: ""
 }
 
-export const dialogsReducer = (state: InitialStateType = initialState, action: DispathActionType):InitialStateType => {
+export const dialogsReducer = (state: InitialStateType = initialState, action: DispathActionType): InitialStateType => {
     switch (action.type) {
         case "ADD-MESSAGE":
-            const newMessage: MessagesType = {
-                id: 6,
-                message: action.messageText,
+            return {
+                ...state,
+                messages: [
+                    ...state.messages,
+                    {
+                        id: 6,
+                        message: action.messageText,
+                    }
+                ],
+                newMessageBody: ""
             }
-            state.messages.push(newMessage)
-            state.newMessageBody = ""
-            return state
         case "CHANGE-NEW_MESSAGE_TEXT":
-            state.newMessageBody = action.newMessageText
-            return state
+            return {
+                ...state,
+                newMessageBody: action.newMessageText
+            }
         default:
             return state
     }
+}
+
+export const addMessageAC = (messageText: string) => {
+    return {
+        type: "ADD-MESSAGE",
+        messageText: messageText
+    } as const
+}
+
+export const changeNewMessageTextAC = (newMessageText: string) => {
+    return {
+        type: "CHANGE-NEW_MESSAGE_TEXT",
+        newMessageText: newMessageText
+    } as const
 }
