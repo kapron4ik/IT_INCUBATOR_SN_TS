@@ -1,21 +1,22 @@
-import {addPostAC, changeNewTextAC} from "../redux/profile-reducer";
+import {addPostAC, changeNewTextAC, setUserProfileAC} from "../redux/profile-reducer";
 import {addMessageAC, changeNewMessageTextAC} from "../redux/dialogs-reducer";
 import {
-    followAC,
-    setCurentPageAC,
-    setTotalUsersCountAC,
-    setUsersAC,
-    toggleIsFetchingAC,
-    unfollowAC
+    follow,
+    setCurentPage,
+    setTotalUsersCount,
+    setUsers,
+    toggleIsFetching,
+    unfollow
 } from "../redux/users-reducer";
 
 export type DispathActionType = ReturnType<typeof addPostAC> |
     ReturnType<typeof changeNewTextAC> |
     ReturnType<typeof addMessageAC> |
     ReturnType<typeof changeNewMessageTextAC> |
-    ReturnType<typeof followAC> |
-    ReturnType<typeof unfollowAC> |
-    ReturnType<typeof setUsersAC>|
-    ReturnType<typeof setCurentPageAC>|
-    ReturnType<typeof setTotalUsersCountAC>|
-    ReturnType<typeof toggleIsFetchingAC>
+    ReturnType<typeof follow> |
+    ReturnType<typeof unfollow> |
+    ReturnType<typeof setUsers>|
+    ReturnType<typeof setCurentPage>|
+    ReturnType<typeof setTotalUsersCount>|
+    ReturnType<typeof toggleIsFetching>|
+    ReturnType<typeof setUserProfileAC>

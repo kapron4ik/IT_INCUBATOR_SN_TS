@@ -82,42 +82,42 @@ export const usersReducer = (state: UsersPageType = initialState, action: Dispat
     }
 }
 
-export const followAC = (userId: number) => {
+export const follow = (userId: number) => {
     return {
         type: "FOLLOW",
         userId: userId
     } as const
 }
 
-export const unfollowAC = (userId: number) => {
+export const unfollow = (userId: number) => {
     return {
         type: "UNFOLLOW",
         userId: userId
     } as const
 }
 
-export const setUsersAC = (users: Array<UserType>) => {
+export const setUsers = (users: Array<UserType>) => {
     return {
         type: "SET_USERS",
         users: users
     } as const
 }
 
-export const setTotalUsersCountAC = (usersCount: number) => {
+export const setTotalUsersCount = (usersCount: number) => {
     return {
         type: "SET_TOTAL_USERS_COUNT",
         usersCount: usersCount
     } as const
 }
 
-export const setCurentPageAC = (currentPage: number) => {
+export const setCurentPage = (currentPage: number) => {
     return {
         type: "SET_CURENT_PAGE",
         currentPage
     } as const
 }
 
-export const toggleIsFetchingAC = (isFetching: boolean) => {
+export const toggleIsFetching = (isFetching: boolean) => {
     return {
         type: "TOGGLE_IS_FETCHING",
         isFetching
