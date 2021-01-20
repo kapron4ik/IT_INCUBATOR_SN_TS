@@ -8,6 +8,7 @@ import {
     toggleIsFetching,
     unfollow
 } from "../redux/users-reducer";
+import {setAuthUserDataAC} from "../redux/auth-reducer";
 
 export type DispathActionType = ReturnType<typeof addPostAC> |
     ReturnType<typeof changeNewTextAC> |
@@ -19,4 +20,5 @@ export type DispathActionType = ReturnType<typeof addPostAC> |
     ReturnType<typeof setCurentPage>|
     ReturnType<typeof setTotalUsersCount>|
     ReturnType<typeof toggleIsFetching>|
-    ReturnType<typeof setUserProfileAC>
+    ReturnType<typeof setUserProfileAC>|
+    ReturnType<typeof setAuthUserDataAC>
