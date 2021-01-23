@@ -9,7 +9,7 @@ import {
     setUsers,
     UserType,
     setCurentPage,
-    setTotalUsersCount, toggleIsFetching
+    setTotalUsersCount, toggleIsFetching, toggleFollowingProgress
 } from "../../redux/users-reducer";
 import axios from "axios";
 import Preloader from "../common/Preloader/Preloader";
@@ -21,12 +21,14 @@ type PropsType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    followingIsProgress: Array<number>
     followUser: (userId: number) => void
     unfollowUser: (userId: number) => void
     setUsers: (users: Array<UserType>) => void
     setTotalUsersCount: (users: number) => void
     setCurrentPage: (currentPage: number) => void
     toggleIsFetching: (isFetching: boolean)=> void
+    toggleFollowingProgress: (isFetching: boolean, userId: number) => void
 }
 
 class UsersApiContainer extends React.Component<PropsType> {
@@ -63,6 +65,8 @@ class UsersApiContainer extends React.Component<PropsType> {
             setUsers={this.props.setUsers}
             unfollowUser={this.props.unfollowUser}
             setPageChanged={this.setPageChanged}
+            followingIsProgress={this.props.followingIsProgress}
+            toggleFollowingProgress={this.props.toggleFollowingProgress}
         />
         </>
     }
@@ -75,7 +79,8 @@ let mapStateToProps = (state:AppStateType) => {
         pagesSize: state.usersPage.pagesSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingIsProgress: state.usersPage.followingIsProgress
     }
 }
 
@@ -108,7 +113,9 @@ const UsersContainer = connect (mapStateToProps, {
     setUsers: setUsers,
     setTotalUsersCount: setTotalUsersCount,
     setCurrentPage: setCurentPage,
-    toggleIsFetching: toggleIsFetching
+    toggleIsFetching: toggleIsFetching,
+    toggleFollowingProgress: toggleFollowingProgress
+
 })(UsersApiContainer)
 
 export default UsersContainer;

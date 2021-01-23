@@ -4,7 +4,7 @@ import {
     follow,
     setCurentPage,
     setTotalUsersCount,
-    setUsers,
+    setUsers, toggleFollowingProgress,
     toggleIsFetching,
     unfollow
 } from "../redux/users-reducer";
@@ -21,4 +21,5 @@ export type DispathActionType = ReturnType<typeof addPostAC> |
     ReturnType<typeof setTotalUsersCount>|
     ReturnType<typeof toggleIsFetching>|
     ReturnType<typeof setUserProfileAC>|
-    ReturnType<typeof setAuthUserDataAC>
+    ReturnType<typeof setAuthUserDataAC>|
+    ReturnType<typeof toggleFollowingProgress>

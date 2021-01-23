@@ -25,6 +25,7 @@ export type UsersPageType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    followingIsProgress: Array<number>
 }
 
 let initialState = {
@@ -32,7 +33,8 @@ let initialState = {
     pagesSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false
+    isFetching: false,
+    followingIsProgress: []
 }
 
 export const usersReducer = (state: UsersPageType = initialState, action: DispathActionType): UsersPageType => {
@@ -76,6 +78,13 @@ export const usersReducer = (state: UsersPageType = initialState, action: Dispat
         return {
             ...state,
             isFetching: action.isFetching
+        }
+        case "TOGGLE_FOLLOWING_PROGRESS":
+        return {
+            ...state,
+            followingIsProgress: action.isFetching
+                ?[...state.followingIsProgress, action.userId]
+                :state.followingIsProgress.filter(id => id != action.userId)
         }
         default:
             return state
@@ -121,5 +130,13 @@ export const toggleIsFetching = (isFetching: boolean) => {
     return {
         type: "TOGGLE_IS_FETCHING",
         isFetching
+    } as const
+}
+
+export const toggleFollowingProgress = (isFetching: boolean, userId: number) => {
+    return {
+        type: "TOGGLE_FOLLOWING_PROGRESS",
+        isFetching,
+        userId
     } as const
 }
