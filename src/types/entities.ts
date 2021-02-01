@@ -1,21 +1,23 @@
 import {addPostAC, changeNewTextAC, setUserProfileAC} from "../redux/profile-reducer";
 import {addMessageAC, changeNewMessageTextAC} from "../redux/dialogs-reducer";
 import {
-    follow,
+    followSuccess,
     setCurentPage,
     setTotalUsersCount,
     setUsers, toggleFollowingProgress,
     toggleIsFetching,
-    unfollow
+    unfollowSuccess
 } from "../redux/users-reducer";
 import {setAuthUserDataAC} from "../redux/auth-reducer";
+import {AppStateType} from "../redux/redux-store";
+import {Dispatch} from "react";
 
 export type DispathActionType = ReturnType<typeof addPostAC> |
     ReturnType<typeof changeNewTextAC> |
     ReturnType<typeof addMessageAC> |
     ReturnType<typeof changeNewMessageTextAC> |
-    ReturnType<typeof follow> |
-    ReturnType<typeof unfollow> |
+    ReturnType<typeof followSuccess> |
+    ReturnType<typeof unfollowSuccess> |
     ReturnType<typeof setUsers>|
     ReturnType<typeof setCurentPage>|
     ReturnType<typeof setTotalUsersCount>|
@@ -23,3 +25,7 @@ export type DispathActionType = ReturnType<typeof addPostAC> |
     ReturnType<typeof setUserProfileAC>|
     ReturnType<typeof setAuthUserDataAC>|
     ReturnType<typeof toggleFollowingProgress>
+
+export type GetStateType = () => AppStateType
+export type DispatchType = Dispatch<DispathActionType>
+// type ThunkType = ThunkAction<Promise<void>,AppStateType, unknown, DispathActionType>

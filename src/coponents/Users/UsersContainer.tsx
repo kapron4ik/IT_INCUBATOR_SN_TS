@@ -4,12 +4,12 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {DispathActionType} from "../../types/entities";
 import {
-    follow,
-    unfollow,
+    followSuccess,
+    unfollowSuccess,
     setUsers,
     UserType,
     setCurentPage,
-    setTotalUsersCount, toggleIsFetching, toggleFollowingProgress
+    setTotalUsersCount, toggleIsFetching, toggleFollowingProgress, getUsers
 } from "../../redux/users-reducer";
 import axios from "axios";
 import Preloader from "../common/Preloader/Preloader";
@@ -24,31 +24,35 @@ type PropsType = {
     followingIsProgress: Array<number>
     followUser: (userId: number) => void
     unfollowUser: (userId: number) => void
-    setUsers: (users: Array<UserType>) => void
-    setTotalUsersCount: (users: number) => void
+    // setUsers: (users: Array<UserType>) => void
+    // setTotalUsersCount: (users: number) => void
     setCurrentPage: (currentPage: number) => void
-    toggleIsFetching: (isFetching: boolean)=> void
+    // toggleIsFetching: (isFetching: boolean)=> void
     toggleFollowingProgress: (isFetching: boolean, userId: number) => void
+    getUsers: (currentPage:number, pagesSize:number)=>void
 }
 
 class UsersApiContainer extends React.Component<PropsType> {
 
     componentDidMount() {
-        this.props.toggleIsFetching(true)
-        usersAPI.getUsers(this.props.currentPage, this.props.pagesSize).then(data => {
-            this.props.toggleIsFetching(false)
-            this.props.setUsers(data.items)
-            this.props.setTotalUsersCount(data.totalCount)
-        })
+        this.props.getUsers(this.props.currentPage, this.props.pagesSize)
+        // this.props.toggleIsFetching(true)
+        // usersAPI.getUsers(this.props.currentPage, this.props.pagesSize).then(data => {
+        //     this.props.toggleIsFetching(false)
+        //     this.props.setUsers(data.items)
+        //     this.props.setTotalUsersCount(data.totalCount)
+        // })
     }
 
-    setPageChanged = (pageNumber: number) => {
-        this.props.toggleIsFetching(true)
-        this.props.setCurrentPage(pageNumber)
-        usersAPI.getUsers(pageNumber, this.props.pagesSize).then(data => {
-            this.props.toggleIsFetching(false)
-            this.props.setUsers(data.items)
-        })
+    onPageChanged = (pageNumber: number) => {
+        this.props.getUsers(pageNumber, this.props.pagesSize)
+        //СТРАНИЦЫ НЕ ПЕРЕКЛЮЧАЮТСЯ
+        // this.props.toggleIsFetching(true)
+        // this.props.setCurrentPage(pageNumber)
+        // usersAPI.getUsers(pageNumber, this.props.pagesSize).then(data => {
+        //     this.props.toggleIsFetching(false)
+        //     this.props.setUsers(data.items)
+        // })
     }
 
     render() {
@@ -61,12 +65,12 @@ class UsersApiContainer extends React.Component<PropsType> {
             followUser={this.props.followUser}
             pagesSize={this.props.pagesSize}
             setCurrentPage={this.props.setCurrentPage}
-            setTotalUsersCount={this.props.setTotalUsersCount}
-            setUsers={this.props.setUsers}
+            // setTotalUsersCount={this.props.setTotalUsersCount}
+            // setUsers={this.props.setUsers}
             unfollowUser={this.props.unfollowUser}
-            setPageChanged={this.setPageChanged}
+            onPageChanged={this.onPageChanged}
             followingIsProgress={this.props.followingIsProgress}
-            toggleFollowingProgress={this.props.toggleFollowingProgress}
+            // toggleFollowingProgress={this.props.toggleFollowingProgress}
         />
         </>
     }
@@ -108,13 +112,14 @@ let mapStateToProps = (state:AppStateType) => {
 // }
 
 const UsersContainer = connect (mapStateToProps, {
-    followUser: follow,
-    unfollowUser: unfollow,
-    setUsers: setUsers,
-    setTotalUsersCount: setTotalUsersCount,
+    followUser: followSuccess,
+    unfollowUser: unfollowSuccess,
+    // setUsers: setUsers,
+    // setTotalUsersCount: setTotalUsersCount,
     setCurrentPage: setCurentPage,
-    toggleIsFetching: toggleIsFetching,
-    toggleFollowingProgress: toggleFollowingProgress
+    // toggleIsFetching: toggleIsFetching,
+    toggleFollowingProgress: toggleFollowingProgress,
+    getUsers: getUsers
 
 })(UsersApiContainer)
 

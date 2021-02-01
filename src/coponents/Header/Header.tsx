@@ -7,7 +7,6 @@ import {AuthUserType} from "../../redux/auth-reducer";
 type PropsType = {
     isAuth: boolean
     login: string
-    setAuthUserData: (userData: AuthUserType) => void
 }
 
 const Header = (props:PropsType) => {

@@ -1,4 +1,5 @@
-import {DispathActionType} from "../types/entities";
+import { usersAPI } from "../api/api";
+import {DispatchType, DispathActionType, GetStateType} from "../types/entities";
 
 // type ActionType = ReturnType<typeof addPostAC> |
 //     ReturnType<typeof changeNewTextAC>
@@ -120,17 +121,23 @@ export const addPostAC = (postText: string) => {
         postText: postText
     } as const
 }
-
 export const changeNewTextAC = (newText: string) => {
     return {
         type: "CHANGE-NEW_TEXT",
         newText: newText
     } as const
 }
-
 export const setUserProfileAC = (profile: ProfileUserType) => {
     return {
         type: "SET_USER_PROFILE",
         profile
     } as const
+}
+
+export const getUserProfile = (userId:string)=>{
+    return (dispatch: DispatchType, getState: GetStateType) => {
+        usersAPI.getProfile(userId).then(response => {
+            dispatch(setUserProfileAC(response.data))
+        })
+    }
 }

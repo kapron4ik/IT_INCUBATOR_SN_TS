@@ -2,9 +2,11 @@ import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import { Redirect } from 'react-router-dom';
 
 type PropsType = {
-    dialogsPage:any
+    dialogsPage:any //ИСПРАВИТЬ
+    isAuth: boolean
     changeNewMessageText: (text:string) => void
     addMessage: (newMessageBody:string) => void
 }
@@ -33,6 +35,10 @@ const Dialogs: React.FC<PropsType> = (props) => {
 
     const onAddMessage = () => {
         props.addMessage(newMessageBody)
+    }
+
+    if (!props.isAuth){
+        return <Redirect to={"/login"}/>
     }
 
     return (

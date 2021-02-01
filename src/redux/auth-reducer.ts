@@ -1,10 +1,11 @@
-import {DispathActionType} from "../types/entities";
+import {DispatchType, DispathActionType, GetStateType} from "../types/entities";
+import {authAPI} from "../api/api";
 
 export type AuthUserType = {
     id: number
     email: string
     login: string
-    isAuth: boolean
+    // isAuth: boolean
 }
 
 type IsAuth = {
@@ -40,4 +41,12 @@ export const setAuthUserDataAC = (userData: AuthUserType) => {
         type: "SET_USER_DATA",
         userData
     } as const
+}
+
+export const getAuthUserData = () => (dispatch: DispatchType, getState: GetStateType) => {
+    authAPI.me().then(response => {
+        if (response.data.resultCode === 0){
+            dispatch(setAuthUserDataAC(response.data.data))
+        }
+    })
 }

@@ -22,5 +22,24 @@ export const usersAPI ={
             .then(response => {
                 return response.data
             })
+    },
+    follow(userId:number){
+        return instanse.post(`follow/${userId}`)
+    },
+    unfollow(userId:number){
+        return instanse.delete(`follow/${userId}`)
+    },
+    getProfile(userId:string){
+        return instanse.get(`profile/${userId}`)
     }
+
+
+}
+
+export const authAPI ={
+    me () {
+        return instanse.get(`auth/me`)
+}
+
+
 }

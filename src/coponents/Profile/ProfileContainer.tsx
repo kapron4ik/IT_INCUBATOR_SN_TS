@@ -2,9 +2,9 @@ import React from 'react';
 import axios from "axios";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {ProfileUserType, setUserProfileAC} from "../../redux/profile-reducer";
+import {getUserProfile, ProfileUserType, setUserProfileAC} from "../../redux/profile-reducer";
 import Profile from "./Profile";
-import {RouteComponentProps, withRouter } from 'react-router-dom';
+import {Redirect, RouteComponentProps, withRouter } from 'react-router-dom';
 
 
 // type PropsType = {
@@ -14,10 +14,11 @@ import {RouteComponentProps, withRouter } from 'react-router-dom';
 
 type MapStateToPropsType = {
     profile: ProfileUserType
+    isAuth: boolean
 }
 
 type MapDispatchToPropsType = {
-    setUserProfile: (profile: ProfileUserType) => void
+    getUserProfile: (userId:string) => void
 }
 
 type OwnPropsType = MapStateToPropsType & MapDispatchToPropsType
@@ -32,18 +33,15 @@ class ProfileContainer extends React.Component<PropsType> {
     componentDidMount() {
         let userId = this.props.match.params.userId
         if (!userId){userId = "2"}
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-        // axios.get(`https://social-network.samuraijs.com/api/1.0/profile/`+userId)
-            .then(response => {
-                debugger
-                this.props.setUserProfile(response.data)
-            })
-
+        this.props.getUserProfile(userId)
     }
 
 
 
     render() {
+        if (!this.props.isAuth){
+            return <Redirect to={"/login"}/>
+        }
         return (
             // <Profile {...this.props} profile={this.props.profile}/>
             <Profile {...this.props}/>
@@ -53,9 +51,10 @@ class ProfileContainer extends React.Component<PropsType> {
 }
 
 let mapStateToProps = (state: AppStateType) => ({
-    profile: state.profilePage.profile
+    profile: state.profilePage.profile,
+    isAuth: state.auth.isAuth
 })
 
 let  WhithUrlDataComponentComponent = withRouter(ProfileContainer)
 
-export default connect(mapStateToProps, {setUserProfile: setUserProfileAC})(WhithUrlDataComponentComponent)
+export default connect(mapStateToProps, {getUserProfile})(WhithUrlDataComponentComponent)
