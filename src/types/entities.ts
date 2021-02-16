@@ -1,4 +1,4 @@
-import {addPostAC, changeNewTextAC, setUserProfileAC} from "../redux/profile-reducer";
+import {addPostAC, changeNewTextAC, setStatusAC, setUserProfileAC} from "../redux/profile-reducer";
 import {addMessageAC, changeNewMessageTextAC} from "../redux/dialogs-reducer";
 import {
     followSuccess,
@@ -24,7 +24,8 @@ export type DispathActionType = ReturnType<typeof addPostAC> |
     ReturnType<typeof toggleIsFetching>|
     ReturnType<typeof setUserProfileAC>|
     ReturnType<typeof setAuthUserDataAC>|
-    ReturnType<typeof toggleFollowingProgress>
+    ReturnType<typeof toggleFollowingProgress>|
+    ReturnType<typeof setStatusAC>
 
 export type GetStateType = () => AppStateType
 export type DispatchType = Dispatch<DispathActionType>

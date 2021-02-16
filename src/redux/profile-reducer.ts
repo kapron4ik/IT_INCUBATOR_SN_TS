@@ -1,4 +1,4 @@
-import { usersAPI } from "../api/api";
+import {profileAPI, usersAPI} from "../api/api";
 import {DispatchType, DispathActionType, GetStateType} from "../types/entities";
 
 // type ActionType = ReturnType<typeof addPostAC> |
@@ -54,10 +54,11 @@ type InitialStateType = {
     posts: Array<PostsType>
     newPostText: string
     profile: ProfileUserType
+    status: string
     // profile: any
 }
 
-let initialState:InitialStateType = {
+let initialState: InitialStateType = {
     posts: [
         {id: 1, message: 'Привет! Как дела?', likesCount: 12},
         {id: 2, message: 'Привет! Это мой первый пост', likesCount: 1},
@@ -85,6 +86,7 @@ let initialState:InitialStateType = {
             large: "string"
         }
     },
+    status: "",
     // profile: null
 }
 
@@ -110,6 +112,11 @@ export const profileReducer = (state: InitialStateType = initialState, action: D
                 ...state,
                 profile: action.profile
             }
+        case "SET_STATUS":
+            return {
+                ...state,
+                status: action.status
+            }
         default:
             return state
     }
@@ -134,10 +141,35 @@ export const setUserProfileAC = (profile: ProfileUserType) => {
     } as const
 }
 
-export const getUserProfile = (userId:string)=>{
+export const getUserProfile = (userId: string) => {
     return (dispatch: DispatchType, getState: GetStateType) => {
         usersAPI.getProfile(userId).then(response => {
             dispatch(setUserProfileAC(response.data))
+        })
+    }
+}
+
+export const setStatusAC = (status: string) => {
+    return {
+        type: "SET_STATUS",
+        status
+    } as const
+}
+
+export const getStatus = (userId: string) => {
+    return (dispatch: DispatchType, getState: GetStateType) => {
+        profileAPI.getStatus(userId).then(response => {
+            dispatch(setStatusAC(response.data))
+        })
+    }
+}
+
+export const updateStatus = (status: string) => {
+    return (dispatch: DispatchType, getState: GetStateType) => {
+        profileAPI.updateStatus(status).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(setStatusAC(status))
+            }
         })
     }
 }

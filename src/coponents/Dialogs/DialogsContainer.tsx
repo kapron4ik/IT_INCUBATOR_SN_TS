@@ -7,6 +7,8 @@ import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {DispathActionType} from "../../types/entities";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 // const DialogsContainer: React.FC<PropsType> = (props) => {
 //     const state = props.store.getState().dialogsPage
@@ -28,7 +30,6 @@ import {DispathActionType} from "../../types/entities";
 let mapStateToProps = (state:AppStateType) => {
     return {
         dialogsPage: state.dialogsPage,
-        isAuth: state.auth.isAuth
     }
 }
 let mapDispatchToProps = (dispatch:(action: DispathActionType) => void) => {
@@ -42,6 +43,7 @@ let mapDispatchToProps = (dispatch:(action: DispathActionType) => void) => {
     }
 }
 
-const DialogsContainer = connect (mapStateToProps, mapDispatchToProps)(Dialogs)
-
-export default DialogsContainer;
+export default compose<React.ComponentType>(
+    connect (mapStateToProps, mapDispatchToProps),
+    withAuthRedirect
+)(Dialogs)

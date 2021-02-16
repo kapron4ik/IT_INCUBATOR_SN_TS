@@ -14,6 +14,8 @@ import {
 import axios from "axios";
 import Preloader from "../common/Preloader/Preloader";
 import { usersAPI } from '../../api/api';
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 type PropsType = {
     users: Array<UserType>
@@ -111,16 +113,23 @@ let mapStateToProps = (state:AppStateType) => {
 //     }
 // }
 
-const UsersContainer = connect (mapStateToProps, {
-    followUser: followSuccess,
-    unfollowUser: unfollowSuccess,
-    // setUsers: setUsers,
-    // setTotalUsersCount: setTotalUsersCount,
-    setCurrentPage: setCurentPage,
-    // toggleIsFetching: toggleIsFetching,
-    toggleFollowingProgress: toggleFollowingProgress,
-    getUsers: getUsers
+// const UsersContainer = connect (mapStateToProps, {
+//     followUser: followSuccess,
+//     unfollowUser: unfollowSuccess,
+//     setCurrentPage: setCurentPage,
+//     toggleFollowingProgress: toggleFollowingProgress,
+//     getUsers: getUsers
+//
+// })(UsersApiContainer)
 
-})(UsersApiContainer)
+export default compose<React.ComponentType>(
+    connect (mapStateToProps, {
+        followUser: followSuccess,
+        unfollowUser: unfollowSuccess,
+        setCurrentPage: setCurentPage,
+        toggleFollowingProgress: toggleFollowingProgress,
+        getUsers: getUsers
 
-export default UsersContainer;
+    }),
+    withAuthRedirect
+)(UsersApiContainer)
