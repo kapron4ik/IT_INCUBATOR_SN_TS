@@ -1,11 +1,10 @@
 import React, {ChangeEvent} from 'react';
 import {
-    addPostAC,
-    changeNewTextAC,
+    addPostAC
 } from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
 import {AppStateType} from "../../../redux/redux-store";
-import {connect} from "react-redux";
+import {connect, ConnectedComponent} from "react-redux";
 import {DispathActionType} from "../../../types/entities";
 
 
@@ -28,24 +27,31 @@ import {DispathActionType} from "../../../types/entities";
 //     )
 // }
 
+type MapStateType = {
+    posts: string
+}
+
+type MapDispathType = {
+    addPost:(newPostText:string) =>void
+}
+
+type PropsType = MapStateType & MapDispathType
+
 let mapStateToProps = (state:AppStateType) => {
     return {
-        posts: state.profilePage.posts,
-        newPostText: state.profilePage.newPostText
+        posts: state.profilePage.posts
     }
 }
 let mapDispatchToProps = (dispatch:(action: DispathActionType) => void) => {
     return {
-        updateNewPostText: (text:string) => {
-            dispatch(changeNewTextAC(text))
-        },
         addPost: (newPostText:string) => {
             dispatch(addPostAC(newPostText))
         }
     }
 }
 
-const MyPostsContainer = connect (mapStateToProps, mapDispatchToProps)(MyPosts)
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
+
 
 
 

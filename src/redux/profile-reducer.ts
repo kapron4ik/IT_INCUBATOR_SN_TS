@@ -52,7 +52,6 @@ type PostsType = {
 
 type InitialStateType = {
     posts: Array<PostsType>
-    newPostText: string
     profile: ProfileUserType
     status: string
     // profile: any
@@ -64,7 +63,6 @@ let initialState: InitialStateType = {
         {id: 2, message: 'Привет! Это мой первый пост', likesCount: 1},
         {id: 3, message: 'Да как и вчера, ты все прекрастно понимаешь.', likesCount: 18},
     ],
-    newPostText: 'bla-bla-car-dub',
     profile: {
         aboutMe: "string",
         contacts: {
@@ -100,12 +98,6 @@ export const profileReducer = (state: InitialStateType = initialState, action: D
                     message: action.postText,
                     likesCount: 0
                 }],
-                newPostText: ""
-            }
-        case "CHANGE-NEW_TEXT":
-            return {
-                ...state,
-                newPostText: action.newText
             }
         case "SET_USER_PROFILE":
             return {
@@ -128,12 +120,7 @@ export const addPostAC = (postText: string) => {
         postText: postText
     } as const
 }
-export const changeNewTextAC = (newText: string) => {
-    return {
-        type: "CHANGE-NEW_TEXT",
-        newText: newText
-    } as const
-}
+
 export const setUserProfileAC = (profile: ProfileUserType) => {
     return {
         type: "SET_USER_PROFILE",

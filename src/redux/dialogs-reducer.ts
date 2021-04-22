@@ -1,22 +1,5 @@
 import { DispathActionType } from "../types/entities";
 
-// type ActionType = ReturnType<typeof addMessageAC> |
-//     ReturnType<typeof changeNewMessageTextAC>
-//
-// export const addMessageAC = (messageText: string) => {
-//     return {
-//         type: "ADD-MESSAGE",
-//         messageText: messageText
-//     } as const
-// }
-//
-// export const changeNewMessageTextAC = (newMessageText: string) => {
-//     return {
-//         type: "CHANGE-NEW_MESSAGE_TEXT",
-//         newMessageText: newMessageText
-//     } as const
-// }
-
 type MessagesType = {
     id: number
     message: string
@@ -30,7 +13,6 @@ type DialogsType = {
 type InitialStateType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
-    newMessageBody: string
 }
 
 let initialState = {
@@ -48,7 +30,6 @@ let initialState = {
         {id: 4, message: '100₴'},
         {id: 5, message: 'Йо'},
     ],
-    newMessageBody: ""
 }
 
 export const dialogsReducer = (state: InitialStateType = initialState, action: DispathActionType): InitialStateType => {
@@ -63,12 +44,6 @@ export const dialogsReducer = (state: InitialStateType = initialState, action: D
                         message: action.messageText,
                     }
                 ],
-                newMessageBody: ""
-            }
-        case "CHANGE-NEW_MESSAGE_TEXT":
-            return {
-                ...state,
-                newMessageBody: action.newMessageText
             }
         default:
             return state
@@ -79,12 +54,5 @@ export const addMessageAC = (messageText: string) => {
     return {
         type: "ADD-MESSAGE",
         messageText: messageText
-    } as const
-}
-
-export const changeNewMessageTextAC = (newMessageText: string) => {
-    return {
-        type: "CHANGE-NEW_MESSAGE_TEXT",
-        newMessageText: newMessageText
     } as const
 }

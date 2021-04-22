@@ -4,6 +4,7 @@ import store from "./redux/redux-store";
 import ReactDOM from "react-dom";
 import {Provider} from "react-redux";
 import App from "./App";
+import {BrowserRouter} from "react-router-dom";
 
 
 // store.subscribe(renderTree)
@@ -11,8 +12,13 @@ import App from "./App";
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>
-            <App/>
+            <BrowserRouter>
+                <App/>
+            </BrowserRouter>
         </Provider>
     </React.StrictMode>,
     document.getElementById('root')
 );
+
+// @ts-ignore
+window.store = store
