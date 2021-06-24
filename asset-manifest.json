@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/it_incubator_sn_ts/static/css/main.de4fb0dc.chunk.css",
-    "main.js": "/it_incubator_sn_ts/static/js/main.a99d33a0.chunk.js",
-    "main.js.map": "/it_incubator_sn_ts/static/js/main.a99d33a0.chunk.js.map",
-    "runtime-main.js": "/it_incubator_sn_ts/static/js/runtime-main.70578dbf.js",
-    "runtime-main.js.map": "/it_incubator_sn_ts/static/js/runtime-main.70578dbf.js.map",
-    "static/js/2.907692f4.chunk.js": "/it_incubator_sn_ts/static/js/2.907692f4.chunk.js",
-    "static/js/2.907692f4.chunk.js.map": "/it_incubator_sn_ts/static/js/2.907692f4.chunk.js.map",
-    "index.html": "/it_incubator_sn_ts/index.html",
-    "static/css/main.de4fb0dc.chunk.css.map": "/it_incubator_sn_ts/static/css/main.de4fb0dc.chunk.css.map",
-    "static/js/2.907692f4.chunk.js.LICENSE.txt": "/it_incubator_sn_ts/static/js/2.907692f4.chunk.js.LICENSE.txt",
-    "static/media/Preloader.e891f5b6.svg": "/it_incubator_sn_ts/static/media/Preloader.e891f5b6.svg",
-    "static/media/user.62312b0f.png": "/it_incubator_sn_ts/static/media/user.62312b0f.png"
+    "main.css": "/IT_INCUBATOR_SN_TS/static/css/main.de4fb0dc.chunk.css",
+    "main.js": "/IT_INCUBATOR_SN_TS/static/js/main.a99d33a0.chunk.js",
+    "main.js.map": "/IT_INCUBATOR_SN_TS/static/js/main.a99d33a0.chunk.js.map",
+    "runtime-main.js": "/IT_INCUBATOR_SN_TS/static/js/runtime-main.c2b075c4.js",
+    "runtime-main.js.map": "/IT_INCUBATOR_SN_TS/static/js/runtime-main.c2b075c4.js.map",
+    "static/js/2.907692f4.chunk.js": "/IT_INCUBATOR_SN_TS/static/js/2.907692f4.chunk.js",
+    "static/js/2.907692f4.chunk.js.map": "/IT_INCUBATOR_SN_TS/static/js/2.907692f4.chunk.js.map",
+    "index.html": "/IT_INCUBATOR_SN_TS/index.html",
+    "static/css/main.de4fb0dc.chunk.css.map": "/IT_INCUBATOR_SN_TS/static/css/main.de4fb0dc.chunk.css.map",
+    "static/js/2.907692f4.chunk.js.LICENSE.txt": "/IT_INCUBATOR_SN_TS/static/js/2.907692f4.chunk.js.LICENSE.txt",
+    "static/media/Preloader.e891f5b6.svg": "/IT_INCUBATOR_SN_TS/static/media/Preloader.e891f5b6.svg",
+    "static/media/user.62312b0f.png": "/IT_INCUBATOR_SN_TS/static/media/user.62312b0f.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.70578dbf.js",
+    "static/js/runtime-main.c2b075c4.js",
     "static/js/2.907692f4.chunk.js",
     "static/css/main.de4fb0dc.chunk.css",
     "static/js/main.a99d33a0.chunk.js"
