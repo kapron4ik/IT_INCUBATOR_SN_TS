@@ -1,5 +1,5 @@
 {
-  "homepage": "https://kapron4ik.github.io/it_incubator_sn_ts",
+  "homepage": "http://kapron4ik.github.io/IT_INCUBATOR_SN_TS",
   "name": "sn-ts",
   "version": "0.1.0",
   "private": true,
@@ -15,6 +15,7 @@
     "@types/redux-form": "^8.3.1",
     "axios": "^0.21.1",
     "babel-loader": "^8.2.2",
+    "gh-pages": "^3.2.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",
