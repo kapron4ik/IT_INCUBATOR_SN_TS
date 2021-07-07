@@ -5,6 +5,7 @@ import axios from "axios";
 import avatarPhoto from "../../assets/images/user.png"
 import {NavLink} from "react-router-dom";
 import {usersAPI} from "../../api/api";
+import {Pagination} from "@material-ui/lab";
 
 type PropsType = {
     users: Array<UserType>
@@ -28,36 +29,38 @@ const Users = (props: PropsType) => {
     for (let i = 1; i <= pageCount; i++) {
         arrayPageCount.push(i)
     }
+    const handleChange = (event: React.FormEvent<EventTarget>, value: number) => {
+        props.onPageChanged(value)
+    };
 
-    return <div>
-        <div>
-            {arrayPageCount.map(p => {
-                return <span className={props.currentPage === p ? s.selectedPage : ""}
-                             onClick={() => {
-                                 props.onPageChanged(p)
-                             }}>{p}</span>
-            })
-            }
+    return <div className={s.wrapper}>
+        <div className={s.pagination}>
+            <Pagination count={pageCount} page={props.currentPage} onChange={handleChange} variant="outlined"
+                        color="primary"/>
         </div>
         {
-            props.users.map(u => <div key={u.id}>
-                    <span>
-                        <div>
-                            <NavLink to={'/profile/'+u.id}>
-                                <img src={u.photos.small
-                                    ? u.photos.small
-                                    : avatarPhoto}
-                                     alt="avatarPhoto" className={s.photo}/>
-                            </NavLink>
-                        </div>
-                        <div>{u.followed
-                            ? <button disabled={props.followingIsProgress.some(id => id === u.id)}
-                                      onClick={() => {props.unfollowUser(u.id)}}>Unfollow</button>
-                            : <button disabled={props.followingIsProgress.some(id => id === u.id)}
-                                      onClick={() => {props.followUser(u.id)}}>Follow</button>
-                        }
-                        </div>
-                    </span>
+            props.users.map(u => <div key={u.id} className={s.user}>
+                <span>
+                    <div>
+                        <NavLink to={'/profile/' + u.id}>
+                            <img src={u.photos.small
+                                ? u.photos.small
+                                : avatarPhoto}
+                                 alt="avatarPhoto" className={s.photo}/>
+                        </NavLink>
+                    </div>
+                    <div>{u.followed
+                        ? <button disabled={props.followingIsProgress.some(id => id === u.id)}
+                                  onClick={() => {
+                                      props.unfollowUser(u.id)
+                                  }}>Unfollow</button>
+                        : <button disabled={props.followingIsProgress.some(id => id === u.id)}
+                                  onClick={() => {
+                                      props.followUser(u.id)
+                                  }}>Follow</button>
+                    }
+                    </div>
+                </span>
                 <span>
                         <div>
                             <span>{u.name}</span>
