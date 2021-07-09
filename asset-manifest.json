@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/IT_INCUBATOR_SN_TS/static/css/main.982416a4.chunk.css",
-    "main.js": "/IT_INCUBATOR_SN_TS/static/js/main.79b0df01.chunk.js",
-    "main.js.map": "/IT_INCUBATOR_SN_TS/static/js/main.79b0df01.chunk.js.map",
+    "main.js": "/IT_INCUBATOR_SN_TS/static/js/main.1c772f33.chunk.js",
+    "main.js.map": "/IT_INCUBATOR_SN_TS/static/js/main.1c772f33.chunk.js.map",
     "runtime-main.js": "/IT_INCUBATOR_SN_TS/static/js/runtime-main.0f6748f9.js",
     "runtime-main.js.map": "/IT_INCUBATOR_SN_TS/static/js/runtime-main.0f6748f9.js.map",
     "static/js/2.332941f2.chunk.js": "/IT_INCUBATOR_SN_TS/static/js/2.332941f2.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.0f6748f9.js",
     "static/js/2.332941f2.chunk.js",
     "static/css/main.982416a4.chunk.css",
-    "static/js/main.79b0df01.chunk.js"
+    "static/js/main.1c772f33.chunk.js"
   ]
 }
